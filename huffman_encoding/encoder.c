@@ -1,5 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
+#include<heapsort.h>
+#include<hashmap.h>
 
 
 struct node {
@@ -101,6 +103,7 @@ int main()
 
     printf("Printing List of Frequencies\n\n");
 
+    // TODO Change this to a 2d array 
     int frequencies[keys_length];
     char characters[keys_length];
 
@@ -108,7 +111,7 @@ int main()
     struct node* prev_key = key;
 
     for (int i = 0; i < keys_length; i++){
-        frequencies[i] = *getValue(hash_map, key->data);
+        frequencies[i] = getValue(hash_map, key->data);
         characters[i] = key->data;
         printf("Character: %c\nFrequency: %d\n\n", key->data, frequencies[i]);
         
@@ -122,7 +125,7 @@ int main()
     char tmp_c;
 
     for (int i = 0; i < keys_length; i++){
-        sort_characters(&frequencies[0], &characters[0], 0, keys_length-i);
+        sort(&frequencies[0], &characters[0], 0, keys_length-i);
         tmp = frequencies[0];
         frequencies[0] = frequencies[keys_length-i-1];
         frequencies[keys_length-i-1] = tmp;

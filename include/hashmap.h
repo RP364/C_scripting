@@ -7,6 +7,6 @@ int*   hash(char key);
 
 void   assignValue(int ***map, char key, int value);
 
-void   getValue(int ***map, char key);
+int*   getValue(int ***map, char key);
 
 #endif
