@@ -35,14 +35,14 @@ void sort_character_map(int* count_array, char* character_array, int index, int 
     }
 
     if (has_left){
-        sort(count_array, LEFT(index), length);
+        sort_character_map(count_array, character_array, LEFT(index), length);
         if (count_array[LEFT(index)] > count_array[index]){
             swap(count_array, character_array, LEFT(index), index);
         }
     }
 
     if (has_right){
-        sort(count_array, RIGHT(index), length);
+        sort_character_map(count_array, character_array, RIGHT(index), length);
         if (count_array[RIGHT(index)] > count_array[index]){
             swap(count_array, character_array, RIGHT(index), index);
         }
