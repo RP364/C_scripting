@@ -1,7 +1,25 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include <stdbool.h>
-#include<heapsort.h>
+#include "heapsort.h"
+
+void sort(int* count_array, char* character_array, int length){
+    int tmp;
+    char tmp_c;
+
+    for (int i = 0; i < length; i++){
+        sort_character_map(&count_array[0], &character_array[0], 0, length-i);
+        tmp = count_array[0];
+        count_array[0] = count_array[length-i-1];
+        count_array[length-i-1] = tmp;
+
+        tmp_c = character_array[0];
+        character_array[0] = character_array[length-i-1];
+        character_array[length-i-1] = tmp_c;
+
+    }
+
+}
 
 void sort_character_map(int* count_array, char* character_array, int index, int length){
 
@@ -19,14 +37,14 @@ void sort_character_map(int* count_array, char* character_array, int index, int 
     if (has_left){
         sort(count_array, LEFT(index), length);
         if (count_array[LEFT(index)] > count_array[index]){
-            swap(count_array, LEFT(index), index);
+            swap(count_array, character_array, LEFT(index), index);
         }
     }
 
     if (has_right){
         sort(count_array, RIGHT(index), length);
         if (count_array[RIGHT(index)] > count_array[index]){
-            swap(count_array, RIGHT(index), index);
+            swap(count_array, character_array, RIGHT(index), index);
         }
     }
 }

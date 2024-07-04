@@ -1,7 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include<heapsort.h>
-#include<hashmap.h>
+#include "heapsort.h"
+#include "hashmap.h"
 
 
 struct node {
@@ -121,20 +121,7 @@ int main()
         
     }
 
-    int tmp;
-    char tmp_c;
-
-    for (int i = 0; i < keys_length; i++){
-        sort(&frequencies[0], &characters[0], 0, keys_length-i);
-        tmp = frequencies[0];
-        frequencies[0] = frequencies[keys_length-i-1];
-        frequencies[keys_length-i-1] = tmp;
-
-        tmp_c = characters[0];
-        characters[0] = characters[keys_length-i-1];
-        characters[keys_length-i-1] = tmp_c;
-
-    }
+    sort(&frequencies[0], &characters[0], keys_length);
 
     // for (int i = 0; i < keys_length; i++){
 
@@ -142,6 +129,6 @@ int main()
 
     // }
 
-    compress();
+    // compress();
 
 }
