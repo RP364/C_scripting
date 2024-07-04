@@ -111,7 +111,7 @@ int main()
     struct node* prev_key = key;
 
     for (int i = 0; i < keys_length; i++){
-        frequencies[i] = getValue(hash_map, key->data);
+        frequencies[i] = *getValue(hash_map, key->data);
         characters[i] = key->data;
         printf("Character: %c\nFrequency: %d\n\n", key->data, frequencies[i]);
         
