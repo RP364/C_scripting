@@ -23,7 +23,8 @@ void sort(int* count_array, char* character_array, int length){
 
 void sort_character_map(int* count_array, char* character_array, int index, int length){
 
-    bool has_left, has_right = false;
+    bool has_left = false;
+    bool has_right = false;
 
     if (LEFT(index) < length) {
         has_left = true;
