@@ -1,0 +1,1 @@
+void test_allocate_hashmap(void);
