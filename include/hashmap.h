@@ -3,7 +3,7 @@
 
 struct HashTable* newHashMap();
 
-int*   hash_function(char* key);
+int    hash_function(char* key, int key_length);
 
 void   assignValue(int ***map, char key, int value);
 
@@ -19,7 +19,7 @@ struct HashTable
 {
     struct HashEntry** entries;
     int size;
-    int* (*hash_function)(char *);
+    int* (*hash_function)(char *, int);
 };
 
 #endif

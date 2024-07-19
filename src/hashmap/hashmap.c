@@ -9,19 +9,31 @@ struct HashTable* newHashMap(){
     table = malloc(sizeof(struct HashTable*));
     table->entries = malloc(sizeof(struct HashEntry*) * MINIMUM_TABLE_SIZE);
     table->size = MINIMUM_TABLE_SIZE;
-    table->hash_function = &hash_function;
+    table->hash_function = hash_function;
 };
 
-int* hash_function(char* key){
+/*
+Jenkins One at a Time Hash Function
+https://en.wikipedia.org/wiki/Jenkins_hash_function
+*/
+int hash_function(char* key, int length){
 
-    int hash[2];
-    int *hash_pt = hash; 
-    int key_int = (int)*key;
+    int hash = 0;
 
-    hash[0] = key_int/32;
-    hash[1] = key_int%32;
+    for (int i =0; i < length; i++){
+        
+        hash += key[i];
+        hash += hash << 10;
+        hash ^= hash >> 6;
+    }
 
-    return hash_pt;
+    hash += hash << 3;
+    hash ^= hash >> 11;
+    hash += hash << 15;
+
+    return hash;
+
+}
 
 }
 
