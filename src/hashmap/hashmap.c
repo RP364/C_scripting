@@ -35,33 +35,27 @@ int hash_function(char* key, int length){
 
 }
 
+void assignValue(struct HashTable *table, char* key, void* value){
+    int key_length = sizeof(key)/sizeof(char);
+    int hash = table->hash_function(key, key_length);
+    int entry_index = hash % table->size;
+
+    if (table->entries[entry_index] == NULL){
+        table->entries[entry_index] = malloc(sizeof(struct HashEntry));
+    }
+    table->entries[entry_index]->key = key;
+    table->entries[entry_index]->value = value;
 }
 
-// void assignValue(int ***map, char key, int value){
-//     int* hash_pointer = hash(key);
-//     int hash_index = hash_pointer[0];
-//     int bucket_index = hash_pointer[1];
-
-//     if (map[hash_index] == NULL){
-//         map[hash_index] = malloc(sizeof(int*) * 32);
-//     }
-//     if (map[hash_index][bucket_index] == NULL){
-//         map[hash_index][bucket_index] = malloc(sizeof(int));
-//     }
-//     *map[hash_index][bucket_index] = value;
-// }
-
-// int* getValue(int ***map, char key){
-//     int *hash_pointer = hash(key);
-//     if (map[hash_pointer[0]] == NULL) {
-//         return NULL;
-//     }
-//     else if (map[hash_pointer[0]][hash_pointer[1]] == NULL)
-//     {
-//         return NULL;
-//     }
-//     else {
-//         return map[hash_pointer[0]][hash_pointer[1]];
-//     }
+void* getValue(struct HashTable *table, char* key){
+    int key_length = sizeof(key)/sizeof(char);
+    int hash = table->hash_function(key, key_length);
+    int entry_index = hash % table->size;
+    if (table->entries[entry_index] == NULL) {
+        return NULL;
+    }
+    else {
+        return table->entries[entry_index]->value;
+    }
     
-// }
+}

@@ -5,9 +5,9 @@ struct HashTable* newHashMap();
 
 int    hash_function(char* key, int key_length);
 
-void   assignValue(int ***map, char key, int value);
+void   assignValue(struct HashTable *table, char* key, void* value);
 
-int*   getValue(int ***map, char key);
+void*  getValue(struct HashTable *table, char* key);
 
 struct HashEntry
 {
